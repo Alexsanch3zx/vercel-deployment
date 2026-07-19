@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #14201c;
-  --ink-soft: #2a3a33;
-  --fog: #e8efe9;
-  --mist: #c5d4c9;
-  --glacier: #3d6b5e;
-  --glacier-deep: #2a4d43;
-  --ember: #b85c38;
-  --paper: #f3f6f3;
-  --white: #fbfcfb;
+  --void: #05080f;
+  --void-soft: #0b1220;
+  --panel: #0f1729;
+  --steel: #9aa8c7;
+  --signal: #5eead4;
+  --signal-dim: #2dd4bf;
+  --warn: #fbbf24;
+  --star: #e8eefc;
+  --grid: rgba(94, 234, 212, 0.08);
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-fog: var(--fog);
-  --color-mist: var(--mist);
-  --color-glacier: var(--glacier);
-  --color-glacier-deep: var(--glacier-deep);
-  --color-ember: var(--ember);
-  --color-paper: var(--paper);
-  --color-white: var(--white);
-  --font-display: var(--font-syne);
-  --font-sans: var(--font-outfit);
+  --color-void: var(--void);
+  --color-void-soft: var(--void-soft);
+  --color-panel: var(--panel);
+  --color-steel: var(--steel);
+  --color-signal: var(--signal);
+  --color-signal-dim: var(--signal-dim);
+  --color-warn: var(--warn);
+  --color-star: var(--star);
+  --font-display: var(--font-space);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-plex);
 }
 
 * {
@@ -36,15 +36,36 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-outfit), system-ui, sans-serif;
+  background: var(--void);
+  color: var(--star);
+  font-family: var(--font-body), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--glacier);
-  color: var(--white);
+  background: var(--signal);
+  color: var(--void);
+}
+
+.space-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.starfield {
+  background-color: var(--void);
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(232, 238, 252, 0.9), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgba(232, 238, 252, 0.65), transparent),
+    radial-gradient(1.5px 1.5px at 44% 34%, rgba(94, 234, 212, 0.7), transparent),
+    radial-gradient(1px 1px at 61% 12%, rgba(232, 238, 252, 0.8), transparent),
+    radial-gradient(1px 1px at 73% 58%, rgba(232, 238, 252, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 86% 26%, rgba(232, 238, 252, 0.85), transparent),
+    radial-gradient(1px 1px at 17% 88%, rgba(94, 234, 212, 0.5), transparent),
+    radial-gradient(1px 1px at 52% 91%, rgba(232, 238, 252, 0.7), transparent),
+    radial-gradient(2px 2px at 91% 78%, rgba(232, 238, 252, 0.9), transparent);
 }
 
 @keyframes rise {
@@ -60,10 +81,19 @@ body {
 
 @keyframes drift {
   from {
-    transform: scale(1.08) translateY(0);
+    transform: scale(1.1) translateY(0);
   }
   to {
-    transform: scale(1) translateY(-1.5%);
+    transform: scale(1) translateY(-2%);
+  }
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
   }
 }
 
@@ -95,7 +125,30 @@ body {
 }
 
 .animate-drift {
-  animation: drift 18s ease-out both;
+  animation: drift 20s ease-out both;
+}
+
+.scanline {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 28%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(94, 234, 212, 0.35),
+    transparent
+  );
+  animation: scan 9s linear infinite;
 }
 
 .reveal {
@@ -110,6 +163,7 @@ body {
   .animate-rise-delay-2,
   .animate-rise-delay-3,
   .animate-drift,
+  .scanline::after,
   .reveal {
     animation: none;
     opacity: 1;

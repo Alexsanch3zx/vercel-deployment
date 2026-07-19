@@ -1,16 +1,14 @@
+import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
-import { Inquire } from "@/components/Inquire";
-import { Practice } from "@/components/Practice";
-import { Work } from "@/components/Work";
+import { Projects } from "@/components/Projects";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Practice />
-      <Work />
-      <Inquire />
+      <Projects />
+      <About />
       <Footer />
     </main>
   );
