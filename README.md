@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NORTH — Deploy on Vercel
 
-## Getting Started
+A polished creative-studio landing page built with **Next.js**. You do not need to learn much code to get this live — the goal is a clean first Vercel deploy.
 
-First, run the development server:
+## What’s included
+
+- Atmospheric full-bleed landing page (`NORTH` brand)
+- Practice + selected work sections
+- Contact form that calls a Vercel serverless API route (`/api/inquire`)
+
+## Run it locally (optional)
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy on Vercel (recommended path)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Option A — GitHub (best for beginners)
 
-## Learn More
+1. Create a free account at [vercel.com](https://vercel.com/signup).
+2. Push this project to a GitHub repo (if you haven’t already).
+3. In Vercel, click **Add New… → Project**.
+4. Import your GitHub repo.
+5. Leave the defaults:
+   - Framework Preset: **Next.js**
+   - Build Command: `next build`
+   - Output: handled automatically
+6. Click **Deploy**.
+7. Wait ~1 minute. Vercel gives you a live URL like `https://your-project.vercel.app`.
 
-To learn more about Next.js, take a look at the following resources:
+Every time you push to GitHub, Vercel redeploys automatically.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Option B — Vercel CLI
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm i -g vercel
+vercel login
+vercel
+```
 
-## Deploy on Vercel
+Follow the prompts. For production:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+vercel --prod
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Quick checklist after deploy
+
+- [ ] Open the live URL
+- [ ] Scroll the full page on phone + desktop
+- [ ] Submit the inquire form — you should see a success message
+- [ ] Optional: in Vercel → Project → Settings → Domains, add a custom domain
+
+## Project map
+
+| Path | Purpose |
+|------|---------|
+| `src/app/page.tsx` | Homepage |
+| `src/components/` | Hero, Practice, Work, Inquire, Footer |
+| `src/app/api/inquire/route.ts` | Serverless form handler |
+| `public/*.jpg` | Hero + work images |
+
+That’s it — deploy, share the URL, you’re done.
